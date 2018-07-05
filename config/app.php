@@ -152,6 +152,7 @@ return [
          */
         Spatie\Permission\PermissionServiceProvider::class,
         'Collective\Html\HtmlServiceProvider',
+        Arcanedev\LogViewer\LogViewerServiceProvider::class,
         /*
          * Application Service Providers...
          */
