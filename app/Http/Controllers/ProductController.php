@@ -62,7 +62,7 @@ class ProductController extends Controller
 
 
         return redirect()->route('products.index')
-                        ->with('success','Product created successfully.');
+                        ->with('success','Produto criado com sucesso');
     }
 
 
@@ -109,7 +109,7 @@ class ProductController extends Controller
 
 
         return redirect()->route('products.index')
-                        ->with('success','Product updated successfully');
+                        ->with('success','Produto atualizado com sucesso');
     }
 
 
@@ -125,6 +125,6 @@ class ProductController extends Controller
 
 
         return redirect()->route('products.index')
-                        ->with('success','Product deleted successfully');
+                        ->with('success','Produto deletado com sucesso');
     }
 }
