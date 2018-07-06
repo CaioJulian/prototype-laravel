@@ -25,6 +25,7 @@ class RegisterController extends BaseController
             'email' => 'required|email',
             'password' => 'required',
             'c_password' => 'required|same:password',
+            'roles' => 'required'
         ]);
 
 
@@ -38,6 +39,8 @@ class RegisterController extends BaseController
         $user = User::create($input);
         $success['token'] =  $user->createToken($user->email)->accessToken;
         $success['name'] =  $user->name;
+        
+        $user->assignRole($request->input('roles'));
 
 
         return $this->sendResponse($success, 'Usuario registrado com sucesso.');
