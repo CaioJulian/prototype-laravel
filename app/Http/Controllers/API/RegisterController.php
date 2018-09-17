@@ -45,4 +45,35 @@ class RegisterController extends BaseController
 
         return $this->sendResponse($success, 'Usuario registrado com sucesso.');
     }
+
+
+
+    /*--- Login de usuario ---*/
+    public function login(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string|min:6'
+        ]);
+
+
+        if($validator->fails()){
+            return $this->sendError('Validation Error.', $validator->errors());       
+        }
+
+        $credentials = request(['email', 'password']);
+        //
+        if(Auth::attempt($credentials)){
+            $user = auth()->user();
+            //gera o token passport
+            $user->token = $user->createToken($user->email)->accessToken;
+            $success['usuario'] = $user;
+            return $this->sendResponse($success, 'Usuario logado com sucesso.');
+        }else{
+            return $this->sendError('Usuario não logado.');
+        }
+
+        
+    }
+
 }
